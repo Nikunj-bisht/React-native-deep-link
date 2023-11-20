@@ -1,19 +1,32 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, ViewStyle} from 'react-native';
 import TetComp from '../components/nativeui';
-class MyTextView extends React.Component {
+interface Props{
+onClick:Function;
+style:ViewStyle;
+text:string;
+}
+class MyTextView extends React.Component<Props> {
+  
   render() {
     return (
       <TetComp
-        style={{width: '100%', height: 50}}
-        text={'Setting a text on a Custom Native Android View'}
+        {...this.props}
       />
     );
   }
 }
 
+
+
 function NativeUi() {
-  return <MyTextView style={{flex: 1}} />;
+ function call(){
+    console.log('hello react')
+      }
+  return <MyTextView onClick={()=>call()} style={{flex: 1}} 
+  text={'Setting a text on a Custom Native Androd View'}
+  
+  />;
 }
 
 export default NativeUi;

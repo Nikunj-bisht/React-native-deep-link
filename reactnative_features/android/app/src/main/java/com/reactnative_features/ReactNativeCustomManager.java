@@ -6,9 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
+
+import java.util.Map;
 
 public class ReactNativeCustomManager extends SimpleViewManager<AdMobView> {
     private static String name = "ReactNativeI";
@@ -31,9 +34,16 @@ public class ReactNativeCustomManager extends SimpleViewManager<AdMobView> {
         return adMobView;
     }
 
+    @Nullable
+    @Override
+    public Map getExportedCustomBubblingEventTypeConstants() {
+        return MapBuilder.builder().put("click",MapBuilder.of("phasedRegistrationNames",MapBuilder.of("bubbled","onClick"))).build();
+    }
+
     @ReactProp(name = "text")
     public void setText(AdMobView view, @Nullable String text) {
-        view.setText(text);
+       TextView textView1 = view.findViewById(R.id.randomN);
+       textView1.setText(text);
     }
 
 }
