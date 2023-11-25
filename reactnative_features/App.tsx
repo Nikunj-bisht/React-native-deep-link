@@ -28,6 +28,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import NativeUi from './src/screens/nativeUi';
 import Home from './src/screens/home';
+import Insta from './src/screens/insta';
+import ImgDet from './src/screens/imgDet';
 const Stack = createNativeStackNavigator();
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -37,20 +39,25 @@ function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: 'blue',
-    flex:1
+    flex: 1,
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen  name="home">
-          {(props)=><Home {...props}/>}
-
+      <NavigationContainer >
+        <Stack.Navigator >
+          <Stack.Screen   name="home">
+            {props => <Home {...props} />}
           </Stack.Screen>
 
-          <Stack.Screen name="nativeui">{(props) => <NativeUi />}</Stack.Screen>
+          <Stack.Screen name="nativeui">{props => <NativeUi />}</Stack.Screen>
+          <Stack.Screen  options={{headerShown: false,headerStyle:{backgroundColor:'white'}}} name="insta">
+            {props => <Insta />}
+          </Stack.Screen>
+          <Stack.Screen  options={{headerShown: true,headerStyle:{backgroundColor:'white'}}} name="imgdet">
+            {props => <ImgDet />}
+          </Stack.Screen>
+          
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
