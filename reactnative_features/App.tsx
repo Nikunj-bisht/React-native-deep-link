@@ -30,6 +30,7 @@ import NativeUi from './src/screens/nativeUi';
 import Home from './src/screens/home';
 import Insta from './src/screens/insta';
 import ImgDet from './src/screens/imgDet';
+import Reels from './src/components/insta/reels';
 const Stack = createNativeStackNavigator();
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -56,6 +57,9 @@ function App(): JSX.Element {
           </Stack.Screen>
           <Stack.Screen  options={{headerShown: true,headerStyle:{backgroundColor:'white'}}} name="imgdet">
             {props => <ImgDet />}
+          </Stack.Screen>
+          <Stack.Screen  options={{headerShown: false,headerStyle:{backgroundColor:'white'}}} name="reels">
+            {props => <Reels />}
           </Stack.Screen>
           
         </Stack.Navigator>

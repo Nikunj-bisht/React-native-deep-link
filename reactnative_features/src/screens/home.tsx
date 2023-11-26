@@ -14,6 +14,9 @@ function Home(props: Iprops) {
       <Button
         title="Insta"
         onPress={() => navigation.navigate('insta')}></Button>
+        <Button
+        title="reels"
+        onPress={() => navigation.navigate('reels')}></Button>
     </View>
   );
 }
