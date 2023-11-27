@@ -1,3 +1,4 @@
+import {useIsFocused} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import React, {useEffect, useState} from 'react';
 import {
@@ -13,13 +14,13 @@ import PagerView from 'react-native-pager-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Video from 'react-native-video';
 
-function Reel({item, pos, index}) {
-  console.log(item)
+function Reel({item, isPaused, index, pos}) {
+  console.log(isPaused, isPaused, isPaused, pos !== index);
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: 'black'}}>
         <Video
-          paused={pos !== index}
+          paused={isPaused ? isPaused : pos !== index}
           repeat={true}
           source={{uri: item.video_files[0].link}}
           style={{
@@ -144,6 +145,15 @@ function Reel({item, pos, index}) {
 function Reels() {
   const [videos, setVideos] = useState([]);
   const [pos, setPos] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    if (!isFocused) {
+      setIsPaused(true);
+    } else {
+      setIsPaused(false);
+    }
+  }, [isFocused]);
   useEffect(() => {
     fetch(
       `https://api.pexels.com/videos/popular?per_page=5&min_height=${
@@ -167,7 +177,7 @@ function Reels() {
           orientation={'vertical'}
           style={{flex: 1}}>
           {videos.map((item, index) => (
-            <Reel index={index} pos={pos} item={item} />
+            <Reel index={index} isPaused={isPaused} pos={pos} item={item} />
           ))}
         </PagerView>
         // <FlashList

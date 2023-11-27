@@ -47,7 +47,7 @@ function App(): JSX.Element {
     <SafeAreaView style={backgroundStyle}>
       <NavigationContainer >
         <Stack.Navigator >
-          <Stack.Screen   name="home">
+          <Stack.Screen options={{headerShown:false}}   name="home">
             {props => <Home {...props} />}
           </Stack.Screen>
 

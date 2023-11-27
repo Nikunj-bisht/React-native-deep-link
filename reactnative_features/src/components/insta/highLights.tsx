@@ -3,7 +3,7 @@ import {FlashList} from '@shopify/flash-list';
 import React, {useEffect, useState} from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 
-function RenderItem({item,onP}) {
+export function RenderItem({item,onP}) {
   return (
     <TouchableOpacity
     onPress={onP}
