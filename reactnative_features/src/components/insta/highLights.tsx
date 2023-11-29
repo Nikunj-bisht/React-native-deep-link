@@ -1,24 +1,33 @@
 import {useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import React, {useEffect, useState} from 'react';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 
-export function RenderItem({item,onP}) {
+export function RenderItem({item,onP,borderColor=null,style}) {
   return (
+    <View style={{alignItems:'center',marginRight:20}}>
+
     <TouchableOpacity
     onPress={onP}
       style={{
-        marginRight: 20,
+        // marginRight: 20,
         padding: 3,
         borderRadius: 50,
         borderColor: 'grey',
         borderWidth: 0.4,
+        // alignItems:'center'
       }}>
       <Image
         source={{uri: item.src.small}}
-        style={{width: 60, height: 60, borderRadius: 50}}
+        style={[{width: 60, height: 60, borderRadius: 50},style]}
       />
     </TouchableOpacity>
+    <View style={{alignItems:'center',marginTop:5}}>
+
+      <Text numberOfLines={1} style={{width:70,textAlign:'center'}}>{item.photographer}</Text>
+    </View>
+    </View>
+
   );
 }
 
@@ -37,7 +46,7 @@ export default function HighLights() {
       .then(dat => setData(dat.photos));
   }, []);
   return (
-    <View style={{height: 110, paddingHorizontal: 12, marginTop: 18}}>
+    <View style={{height: 150, paddingHorizontal: 12, marginTop: 18}}>
       {data.length > 0 && (
         <FlashList
           estimatedItemSize={300}
