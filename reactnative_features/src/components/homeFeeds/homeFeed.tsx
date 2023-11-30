@@ -122,7 +122,7 @@ export default function HomeFeedMain() {
   const [followList,setFollowList] = useState([])
   function getData() {
     fetch(
-      `https://api.pexels.com/v1/search?query=dragon ball z&per_page=32&page=${page}`,
+      `https://api.pexels.com/v1/search?query=animals&per_page=32&page=${page}`,
       {
         headers: {
           Authorization:

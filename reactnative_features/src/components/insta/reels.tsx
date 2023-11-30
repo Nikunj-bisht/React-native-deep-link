@@ -15,13 +15,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Video from 'react-native-video';
 
 function Reel({item, isPaused, index, pos}) {
-  console.log(isPaused, isPaused, isPaused, pos !== index);
+  // console.log(item.video_files[0].link);
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: 'black'}}>
         <Video
           paused={isPaused ? isPaused : pos !== index}
           repeat={true}
+          onError={(e)=>console.log(e)}
           source={{uri: item.video_files[0].link}}
           style={{
             flex: 1,
@@ -156,7 +157,7 @@ function Reels() {
   }, [isFocused]);
   useEffect(() => {
     fetch(
-      `https://api.pexels.com/videos/popular?per_page=5&min_height=${
+      `https://api.pexels.com/videos/popular?per_page=5&page=4&min_height=${
         Dimensions.get('screen').height
       }&min_width=${Dimensions.get('screen').width}`,
       {
