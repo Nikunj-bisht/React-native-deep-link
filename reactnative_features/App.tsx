@@ -25,13 +25,15 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import NativeUi from './src/screens/nativeUi';
 import Home from './src/screens/home';
 import Insta from './src/screens/insta';
 import ImgDet from './src/screens/imgDet';
 import Reels from './src/components/insta/reels';
-const Stack = createNativeStackNavigator();
+import {TransitionPresets} from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
@@ -45,23 +47,38 @@ function App(): JSX.Element {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <NavigationContainer >
-        <Stack.Navigator >
-          <Stack.Screen options={{headerShown:false}}   name="home">
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{}}>
+          <Stack.Screen options={{headerShown: false}} name="home">
             {props => <Home {...props} />}
           </Stack.Screen>
 
           <Stack.Screen name="nativeui">{props => <NativeUi />}</Stack.Screen>
-          <Stack.Screen  options={{headerShown: false,headerStyle:{backgroundColor:'white'}}} name="insta">
+          <Stack.Screen
+            options={{
+              headerShown: false,
+              headerStyle: {backgroundColor: 'white'},
+            }}
+            name="insta">
             {props => <Insta />}
           </Stack.Screen>
-          <Stack.Screen  options={{headerShown: true,headerStyle:{backgroundColor:'white'}}} name="imgdet">
-            {props => <ImgDet />}
+          <Stack.Screen
+            options={{
+              headerShown: false,
+              headerStyle: {backgroundColor: 'white'},
+              ...TransitionPresets.ScaleFromCenterAndroid,
+            }}
+            name="imgdet">
+            {props => <ImgDet {...props} />}
           </Stack.Screen>
-          <Stack.Screen  options={{headerShown: false,headerStyle:{backgroundColor:'white'}}} name="reels">
+          <Stack.Screen
+            options={{
+              headerShown: false,
+              headerStyle: {backgroundColor: 'white'},
+            }}
+            name="reels">
             {props => <Reels />}
           </Stack.Screen>
-          
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

@@ -7,6 +7,7 @@ import ImgDet from './imgDet';
 import Reels from '../components/insta/reels';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeFeed from '../components/homeFeeds';
+import { Search } from './search';
 interface Iprops {
   navigation: any;
 }
@@ -36,7 +37,7 @@ function Home(props: Iprops) {
             headerShown: false,
           }}
           name="reels">
-          {props => <></>}
+          {props => <Search/>}
         </Tab.Screen>
         <Tab.Screen
           options={{
