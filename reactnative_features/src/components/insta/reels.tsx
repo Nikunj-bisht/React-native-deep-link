@@ -163,7 +163,7 @@ function Reels() {
       {
         headers: {
           Authorization:
-            'yKt6IciAc8Wgqf1A6C4RwKEa8y4nis42UQgRkhsdOJDpC0gDUOya2O1G',
+            'yKt6IciAc8Wgqf1A6C4Rw4nis42UQgRkhsdOJDpC0gDUOya2O1G',
         },
       },
     )
